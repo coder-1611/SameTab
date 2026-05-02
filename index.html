@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SameTab</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #222;
+  }
+  .card {
+    background: #fff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    width: min(520px, 90vw);
+  }
+  h1 {
+    margin: 0 0 8px;
+    font-size: 28px;
+  }
+  p {
+    margin: 0 0 24px;
+    color: #666;
+    font-size: 14px;
+  }
+  form { display: flex; gap: 8px; }
+  input[type="text"] {
+    flex: 1;
+    padding: 12px 14px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+  }
+  input[type="text"]:focus { border-color: #667eea; }
+  button {
+    padding: 12px 22px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background: #667eea;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  button:hover { background: #5568d3; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>SameTab</h1>
+    <p>Enter a URL — it opens right here, in this tab.</p>
+    <form id="f">
+      <input id="u" type="text" placeholder="example.com" autofocus autocomplete="off">
+      <button type="submit">Go</button>
+    </form>
+  </div>
+<script>
+  document.getElementById('f').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var v = document.getElementById('u').value.trim();
+    if (!v) return;
+    if (!/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\//.test(v)) v = 'https://' + v;
+    window.location.href = v;
+  });
+</script>
+</body>
+</html>
